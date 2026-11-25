@@ -1,0 +1,42 @@
+{
+  "info": {
+    "_postman_id": "373d393e-d8b6-442c-b8f2-cce4a2c440be",
+    "name": "Lab05 - Public API Testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58630704",
+    "_collection_link": "https://go.postman.co/collection/58630704-373d393e-d8b6-442c-b8f2-cce4a2c440be?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "TC13 - Get Public Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(pm.response.json()).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"First user name is Leanne Graham\", function () {\r\n    pm.expect(pm.response.json()[0].name).to.eql(\"Leanne Graham\");\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
