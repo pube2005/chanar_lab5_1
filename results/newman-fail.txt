@@ -1,0 +1,200 @@
+(node:41976) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+newman
+
+Lab05 - Intentional FAIL
+
+Folder TC01 - Successful Registration
+Sub-folder TC01 - Setup Student
+  PUT http://localhost:3000/students/B232270144_TC01 [200 OK, 178B, 31ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC01 - Setup Course
+  PUT http://localhost:3000/courses/CS313_TC01 [200 OK, 178B, 5ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC01 - Successful Registration
+  POST http://localhost:3000/registrations [201 Created, 203B, 5ms]
+  1. Status code is 200
+  Pass  Result is OK
+  Pass  Registration ID is a number
+
+Folder TC02 - No Student
+Sub-folder TC02 - Setup Course
+  PUT http://localhost:3000/courses/CS313_TC02 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC02 - No Student
+  POST http://localhost:3000/registrations [200 OK, 192B, 5ms]
+  Pass  Status code is 200
+  Pass  Result is ERROR_NO_STUDENT
+
+Folder TC03 - Inactive Student
+Sub-folder TC03 - Setup Student
+  PUT http://localhost:3000/students/B232270144_TC03 [200 OK, 178B, 4ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC03 - Setup Course
+  PUT http://localhost:3000/courses/CS313_TC03 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC03 - Inactive Student
+  POST http://localhost:3000/registrations [200 OK, 198B, 3ms]
+  Pass  Status code is 200
+  Pass  Result is ERROR_INACTIVE_STUDENT
+
+Folder TC04 - No Course
+Sub-folder TC04 - Setup Student
+  PUT http://localhost:3000/students/B232270144_TC04 [200 OK, 178B, 4ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC04 - No Course
+  POST http://localhost:3000/registrations [200 OK, 191B, 3ms]
+  Pass  Status code is 200
+  Pass  Result is ERROR_NO_COURSE
+
+Folder TC05 - Missing Prerequisites
+Sub-folder TC05 - Setup Student
+  PUT http://localhost:3000/students/B232270144_TC05 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC05 - Setup Course
+  PUT http://localhost:3000/courses/CS313_TC05 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC05 - Missing Prerequisites
+  POST http://localhost:3000/registrations [200 OK, 215B, 3ms]
+  Pass  Status code is 200
+  Pass  Result is ERROR_PREREQUISITES
+  Pass  Missing prerequisites are correct
+
+Folder TC06 - Student and Course Missing
+Sub-folder TC06 - Student and Course Missing
+  POST http://localhost:3000/registrations [200 OK, 192B, 3ms]
+  Pass  Status code is 200
+  Pass  Result is ERROR_NO_STUDENT
+
+Folder TC07 - Inactive Student and No Course
+Sub-folder TC07 - Setup Student
+  PUT http://localhost:3000/students/B232270144_TC07 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC07 - Inactive Student and No Course
+  POST http://localhost:3000/registrations [200 OK, 198B, 2ms]
+  Pass  Status code is 200
+  Pass  Result is ERROR_INACTIVE_STUDENT
+
+Folder TC08 - No Prerequisites
+Sub-folder TC08 - Setup Student
+  PUT http://localhost:3000/students/B232270144_TC08 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC08 - Setup Course
+  PUT http://localhost:3000/courses/CS313_TC08 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC08 - No Prerequisites
+  POST http://localhost:3000/registrations [201 Created, 203B, 3ms]
+  Pass  Status code is 201
+  Pass  Result is OK
+  Pass  Registration ID is a number
+
+Folder TC09 - Partial Prerequisites
+Sub-folder TC09 - Setup Student
+  PUT http://localhost:3000/students/B232270144_TC09 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC09 - Setup Course
+  PUT http://localhost:3000/courses/CS313_TC09 [200 OK, 178B, 2ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC09 - Partial Prerequisites
+  POST http://localhost:3000/registrations [200 OK, 215B, 4ms]
+  Pass  Status code is 200
+  Pass  Result is ERROR_PREREQUISITES
+  Pass  Missing prerequisites are correct
+
+Folder TC10 - Empty Courses Taken
+Sub-folder TC10 - Setup Student
+  PUT http://localhost:3000/students/B232270144_TC10 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC10 - Setup Course
+  PUT http://localhost:3000/courses/CS313_TC10 [200 OK, 178B, 4ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC10 - Empty Courses Taken
+  POST http://localhost:3000/registrations [200 OK, 215B, 2ms]
+  Pass  Status code is 200
+  Pass  Result is ERROR_PREREQUISITES
+  Pass  Missing prerequisites are correct
+
+Folder TC11 - Missing Student ID
+Sub-folder TC11 - Setup Course
+  PUT http://localhost:3000/courses/CS313_TC11 [200 OK, 178B, 3ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC11 - Missing Student ID
+  POST http://localhost:3000/registrations [400 Bad Request, 202B, 4ms]
+  Pass  Status code is 400
+  Pass  Result is ERROR_BAD_REQUEST
+
+Folder TC12 - Invalid JSON
+Sub-folder TC12 - Setup Student
+  PUT http://localhost:3000/students/B232270144_TC12 [200 OK, 178B, 4ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC12 - Setup Course
+  PUT http://localhost:3000/courses/CS313_TC12 [200 OK, 178B, 5ms]
+  Pass  Setup status is 200
+  Pass  Setup result is OK
+
+Sub-folder TC12 - Invalid JSON
+  POST http://localhost:3000/registrations [400 Bad Request, 199B, 3ms]
+  Pass  Status code is 400
+  Pass  Result is ERROR_BAD_JSON
+
+---------------------------------------------------------------
+|                         |        executed |          failed |
+--------------------------+-----------------+------------------
+|              iterations |               1 |               0 |
+--------------------------+-----------------+------------------
+|                requests |              30 |               0 |
+--------------------------+-----------------+------------------
+|            test-scripts |              30 |               0 |
+--------------------------+-----------------+------------------
+|      prerequest-scripts |               0 |               0 |
+--------------------------+-----------------+------------------
+|              assertions |              65 |               1 |
+---------------------------------------------------------------
+| total run duration: 2.7s                                    |
+---------------------------------------------------------------
+| total data received: 709B (approx)                          |
+---------------------------------------------------------------
+| average response time: 4ms [min: 2ms, max: 31ms, s.d.: 5ms] |
+---------------------------------------------------------------
+
+[31m  # [39m[31m failure        [39m[31m detail                                                                   [39m
+[90m    [39m[90m                [39m[90m                                                                          [39m
+ 1.  AssertionError  Status code is 200                                                       
+                     expected response to have status code 200 but got 201                    
+                     at assertion:0 in test-script                                            
+                     inside "TC01 - Successful Registration / TC01 - Successful Registration" 
+exit=1
