@@ -1,20 +1,20 @@
 
 
-\# Lab05 — API System Testing (Postman \& Newman)
+# Lab05 — API System Testing (Postman \& Newman)
 
 
 
-\*\*Оюутны нэр:\*\* П.Пүрэвдаш  
+**Оюутны нэр:** П.Пүрэвдаш  
 
-\*\*Оюутны код:\*\* B232270144  
+**Оюутны код:** B232270144  
 
-\*\*Хичээл:\*\* F.CSA313 — Программ хангамжийн чанарын баталгаа ба тест  
+**Хичээл:** F.CSA313 — Программ хангамжийн чанарын баталгаа ба тест  
 
-\*\*Лаборатори:\*\* 05
+**Лаборатори:** 05
 
 
 
-\## 1. Зорилго
+## 1. Зорилго
 
 
 
@@ -22,24 +22,17 @@
 
 
 
-\## 2. Ажлын орчин
+## 2. Ажлын орчин
 
 
 
 | Хэрэгсэл | Хувилбар |
-
 |---|---|
-
 | Үйлдлийн систем | Windows / PowerShell |
-
 | Node.js | v24.14.1 |
-
 | Newman | 6.2.2 |
-
 | npm | 11.11.0 |
-
 | Git | 2.52.0.windows.1 |
-
 | Postman | API тестийн хэрэгсэл |
 
 
@@ -69,30 +62,28 @@ Collection variable:
 
 
 | Variable | Value |
-
 |---|---|
-
 | baseUrl | http://localhost:3000 |
 
 
 
-\## 3. Тест дизайны таван алхам
+## 3. Тест дизайны таван алхам
 
 
 
-1\. Бие даан тестлэгдэх функцийг тодорхойлох.
+1. Бие даан тестлэгдэх функцийг тодорхойлох.
 
-2\. Оролтын сонголтуудыг тодорхойлох.
+2. Оролтын сонголтуудыг тодорхойлох.
 
-3\. Эквивалент анги болон төлөөлөх утгуудыг сонгох.
+3. Эквивалент анги болон төлөөлөх утгуудыг сонгох.
 
-4\. Тестийн спецификаци боловсруулах.
+4. Тестийн спецификаци боловсруулах.
 
-5\. Бодит тест кейс хэрэгжүүлэх.
+5. Бодит тест кейс хэрэгжүүлэх.
 
 
 
-\### Тестлэгдэх функц
+### Тестлэгдэх функц
 
 
 
@@ -104,95 +95,61 @@ Collection variable:
 
 
 
-\### API endpoints
+### API endpoints
 
 
 
 | Method | Endpoint | Зориулалт |
-
 |---|---|---|
-
 | PUT | /students/:id | Оюутны setup |
-
 | PUT | /courses/:id | Хичээлийн setup |
-
 | POST | /registrations | Хичээлд бүртгүүлэх |
-
 | GET | /courses/:id | Хичээлийн мэдээлэл авах |
-
 | GET | /registrations | Бүртгэлийн жагсаалт авах |
 
 
 
-\## 4. Сонголт ба төлөөлөх утга
+## 4. Сонголт ба төлөөлөх утга
 
 
 
 | Сонголт | Эквивалент анги | Төлөөлөх утга |
-
 |---|---|---|
-
 | studentID | Идэвхтэй оюутан | active |
-
 | studentID | Идэвхгүй оюутан | inactive |
-
-| studentID | Байхгүй оюутан | UNKNOWN\_STUDENT |
-
-| coursesTaken | Урьдач нөхцөл хангана | \["CS201"] |
-
-| coursesTaken | Урьдач нөхцөл хангахгүй | \["CS101"] |
-
-| coursesTaken | Хоосон | \[] |
-
+| studentID | Байхгүй оюутан | UNKNOWN_STUDENT |
+| coursesTaken | Урьдач нөхцөл хангана | ["CS201"] |
+| coursesTaken | Урьдач нөхцөл хангахгүй | ["CS101"] |
+| coursesTaken | Хоосон | [] |
 | courseID | Байгаа хичээл | CS313 |
-
-| courseID | Байхгүй хичээл | UNKNOWN\_COURSE |
-
+| courseID | Байхгүй хичээл | UNKNOWN_COURSE |
 | prerequisites | Бүгдийг хангасан | CS201-ийг үзсэн |
-
 | prerequisites | Заримыг хангасан | CS201, CS202-оос CS201-ийг үзсэн |
-
 | prerequisites | Огт хангаагүй | Зөвхөн CS101-ийг үзсэн |
-
-| prerequisites | Урьдач нөхцөлгүй | \[] |
-
+| prerequisites | Урьдач нөхцөлгүй | [] |
 | Хүсэлтийн формат | Талбар дутуу | studentID байхгүй |
-
 | Хүсэлтийн формат | Буруу JSON | Invalid JSON |
 
 
 
-\## 5. Тестийн спецификаци
+## 5. Тестийн спецификаци
 
 
 
 | ID | Тестийн нөхцөл | HTTP status | Expected result |
-
 |---|---|---:|---|
-
 | TC01 | Амжилттай бүртгэл | 201 | OK |
-
-| TC02 | Оюутан байхгүй | 200 | ERROR\_NO\_STUDENT |
-
-| TC03 | Идэвхгүй оюутан | 200 | ERROR\_INACTIVE\_STUDENT |
-
-| TC04 | Хичээл байхгүй | 200 | ERROR\_NO\_COURSE |
-
-| TC05 | Урьдач нөхцөл хангаагүй | 200 | ERROR\_PREREQUISITES |
-
-| TC06 | Оюутан болон хичээл байхгүй | 200 | ERROR\_NO\_STUDENT |
-
-| TC07 | Идэвхгүй оюутан, хичээл байхгүй | 200 | ERROR\_INACTIVE\_STUDENT |
-
+| TC02 | Оюутан байхгүй | 200 | ERROR_NO_STUDENT |
+| TC03 | Идэвхгүй оюутан | 200 | ERROR_INACTIVE_STUDENT |
+| TC04 | Хичээл байхгүй | 200 | ERROR_NO_COURSE |
+| TC05 | Урьдач нөхцөл хангаагүй | 200 | ERROR_PREREQUISITES |
+| TC06 | Оюутан болон хичээл байхгүй | 200 | ERROR_NO_STUDENT |
+| TC07 | Идэвхгүй оюутан, хичээл байхгүй | 200 | ERROR_INACTIVE_STUDENT |
 | TC08 | Урьдач нөхцөлгүй хичээл | 201 | OK |
-
-| TC09 | Урьдач нөхцөлийг хэсэгчлэн хангасан | 200 | ERROR\_PREREQUISITES |
-
-| TC10 | Үзсэн хичээлийн жагсаалт хоосон | 200 | ERROR\_PREREQUISITES |
-
-| TC11 | studentID талбар дутуу | 400 | ERROR\_BAD\_REQUEST |
-
-| TC12 | Буруу JSON | 400 | ERROR\_BAD\_JSON |
+| TC09 | Урьдач нөхцөлийг хэсэгчлэн хангасан | 200 | ERROR_PREREQUISITES |
+| TC10 | Үзсэн хичээлийн жагсаалт хоосон | 200 | ERROR_PREREQUISITES |
+| TC11 | studentID талбар дутуу | 400 | ERROR_BAD_REQUEST |
+| TC12 | Буруу JSON | 400 | ERROR_BAD_JSON |
 
 
 
@@ -200,17 +157,17 @@ Collection variable:
 
 
 
-\- Хэвийн нөхцөл: TC01.
+- Хэвийн нөхцөл: TC01.
 
-\- Үндсэн алдааны нөхцөл: TC02–TC05.
+- Үндсэн алдааны нөхцөл: TC02–TC05.
 
-\- Давхар алдааны нөхцөл: TC06–TC07.
+- Давхар алдааны нөхцөл: TC06–TC07.
 
-\- Хязгаарын болон нэмэлт нөхцөл: TC08–TC12.
+- Хязгаарын болон нэмэлт нөхцөл: TC08–TC12.
 
 
 
-\## 6. Postman тестийн хэрэгжүүлэлт
+## 6. Postman тестийн хэрэгжүүлэлт
 
 
 
@@ -222,9 +179,9 @@ Collection variable:
 
 
 
-\- HTTP status шалгах.
+- HTTP status шалгах.
 
-\- Response-ийн result утгыг шалгах.
+- Response-ийн result утгыг шалгах.
 
 
 
@@ -256,15 +213,15 @@ registrationID-ийн тогтмол утгыг шалгаагүй, зөвхөн
 
 
 
-Collection: \[lab05-collection.json](lab05-collection.json)
+Collection: [lab05-collection.json](lab05-collection.json)
 
 
 
-\## 7. Newman автомат тест
+## 7. Newman автомат тест
 
 
 
-\### Сервер ажиллуулах
+### Сервер ажиллуулах
 
 
 
@@ -276,7 +233,7 @@ node server.js
 
 
 
-\### 7.1. PASS
+### 7.1. PASS
 
 
 
@@ -296,11 +253,11 @@ newman run lab05-collection.json
 
 
 
-Нотолгоо: \[newman-pass.txt](results/newman-pass.txt)
+Нотолгоо: [newman-pass.txt](results/newman-pass.txt)
 
 
 
-\### 7.2. FAIL
+### 7.2. FAIL
 
 
 
@@ -320,11 +277,11 @@ newman run lab05-collection-fail.json
 
 
 
-Нотолгоо: \[newman-fail.txt](results/newman-fail.txt)
+Нотолгоо: [newman-fail.txt](results/newman-fail.txt)
 
 
 
-\### 7.3. DOWN
+### 7.3. DOWN
 
 
 
@@ -348,43 +305,33 @@ FAIL нь бодит хариу oracle-ийн хүлээгдэх утгатай 
 
 
 
-Нотолгоо: \[newman-down.txt](results/newman-down.txt)
+Нотолгоо: [newman-down.txt](results/newman-down.txt)
 
 
 
-\## 8. Туршилтын бодит үр дүн
+## 8. Туршилтын бодит үр дүн
 
 
 
 | Үзүүлэлт | PASS | FAIL | DOWN |
-
 |---|---:|---:|---:|
-
 | Iterations | 1 | 1 | 1 |
-
 | Requests | 30 | 30 | 30 |
-
 | Failed requests | 0 | 0 | 30 |
-
 | Test scripts | 30 | 30 | 30 |
-
 | Assertions executed | 65 | 65 | 65 |
-
 | Assertions passed | 65 | 64 | 0 |
-
 | Assertions failed | 0 | 1 | 65 |
-
 | Total duration | 2.6s | 2.7s | 2.7s |
-
 | Exit code | 0 | 1 | 1 |
 
 
 
-Үндсэн тест кейсийн тоо: \*\*12\*\*
+Үндсэн тест кейсийн тоо: **12**
 
 
 
-Newman assertions executed: \*\*65\*\*
+Newman assertions executed: **65**
 
 
 
@@ -392,7 +339,7 @@ Newman assertions executed: \*\*65\*\*
 
 
 
-\## 9. Нэмэлт даалгавар — Нийтийн API
+## 9. Нэмэлт даалгавар — Нийтийн API
 
 
 
@@ -408,28 +355,21 @@ Endpoint:
 
 
 
-\- HTTP status 200 эсэх.
+- HTTP status 200 эсэх.
 
-\- Response массив мөн эсэх.
+- Response массив мөн эсэх.
 
-\- Эхний хэрэглэгчийн нэр Leanne Graham мөн эсэх.
+- Эхний хэрэглэгчийн нэр Leanne Graham мөн эсэх.
 
 
 
 | Үзүүлэлт | Үр дүн |
-
 |---|---:|
-
 | Requests | 1 |
-
 | Assertions executed | 3 |
-
 | Assertions passed | 3 |
-
 | Assertions failed | 0 |
-
 | Response time | 713ms |
-
 | Exit code | 0 |
 
 
@@ -438,15 +378,15 @@ Endpoint:
 
 
 
-Collection: \[lab05-public-api.json](lab05-public-api.json)
+Collection: [lab05-public-api.json](lab05-public-api.json)
 
 
 
-Нотолгоо: \[newman-public-api.txt](results/newman-public-api.txt)
+Нотолгоо: [newman-public-api.txt](results/newman-public-api.txt)
 
 
 
-\## 10. AI туслахын хэрэглээ
+## 10. AI туслахын хэрэглээ
 
 
 
@@ -462,13 +402,13 @@ AI туслахыг тестийн эквивалент анги тодорхо�
 
 
 
-\## 11. Файлын бүтэц
+## 11. Файлын бүтэц
 
 
 
 ```text
 
-chanar\_lab5/
+chanar_lab5/
 
 ├── .gitignore
 
@@ -502,7 +442,7 @@ chanar\_lab5/
 
 
 
-\## 12. Дүгнэлт
+## 12. Дүгнэлт
 
 
 
